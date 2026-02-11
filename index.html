@@ -3,673 +3,549 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Ultimate Glassmorphism Generator Pro</title>
+<title>Glassmorphism Generator Pro</title>
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Share+Tech+Mono&family=Rajdhani:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 
 <style>
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
+* { margin: 0; padding: 0; box-sizing: border-box; }
 
-/* ===================== INDUSTRIAL BACKGROUND ===================== */
 body {
+  background: #f0f2f5;
+  font-family: 'Inter', sans-serif;
   min-height: 100vh;
-  font-family: 'Rajdhani', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  overflow-x: hidden;
-  position: relative;
-
-  /* Deep dark industrial base */
-  background-color: #0d0e11;
-
-  /* Metal plate texture via repeating gradients */
-  background-image:
-    /* Diagonal brushed metal lines */
-    repeating-linear-gradient(
-      135deg,
-      transparent,
-      transparent 2px,
-      rgba(255,255,255,0.012) 2px,
-      rgba(255,255,255,0.012) 4px
-    ),
-    /* Horizontal rivet-line grid */
-    repeating-linear-gradient(
-      0deg,
-      transparent,
-      transparent 60px,
-      rgba(255,165,0,0.04) 60px,
-      rgba(255,165,0,0.04) 61px
-    ),
-    repeating-linear-gradient(
-      90deg,
-      transparent,
-      transparent 60px,
-      rgba(255,165,0,0.03) 60px,
-      rgba(255,165,0,0.03) 61px
-    ),
-    /* Vignette overlay */
-    radial-gradient(ellipse at 50% 0%, rgba(255,140,0,0.08) 0%, transparent 60%),
-    radial-gradient(ellipse at 20% 80%, rgba(100,120,150,0.1) 0%, transparent 50%),
-    /* Base gradient - dark charcoal to near-black */
-    linear-gradient(160deg, #1a1c22 0%, #0d0e11 40%, #111318 70%, #0a0b0e 100%);
+  color: #1a1a2e;
 }
 
-/* Rivets / bolts pattern overlay using pseudo-element */
-body::before {
-  content: '';
-  position: fixed;
-  inset: 0;
-  pointer-events: none;
-  z-index: 0;
-  background-image:
-    radial-gradient(circle 3px at 30px 30px, rgba(180,160,100,0.25) 0%, transparent 70%),
-    radial-gradient(circle 3px at 30px 90px, rgba(180,160,100,0.25) 0%, transparent 70%),
-    radial-gradient(circle 3px at 90px 30px, rgba(180,160,100,0.25) 0%, transparent 70%),
-    radial-gradient(circle 3px at 90px 90px, rgba(180,160,100,0.25) 0%, transparent 70%);
-  background-size: 120px 120px;
-  opacity: 0.7;
-}
-
-/* Orange glowing accent bars — top and bottom */
-body::after {
-  content: '';
-  position: fixed;
-  top: 0; left: 0; right: 0;
-  height: 3px;
-  background: linear-gradient(90deg, transparent 0%, #ff8c00 30%, #ffa500 50%, #ff8c00 70%, transparent 100%);
-  z-index: 999;
-  box-shadow: 0 0 20px rgba(255,140,0,0.6), 0 0 40px rgba(255,140,0,0.3);
-}
-
-/* All content above pseudo-elements */
-.container-fluid {
-  position: relative;
-  z-index: 1;
-  padding: 25px 20px;
-}
-
-/* ===================== HEADER ===================== */
-.header {
-  text-align: center;
-  color: #e8e0d0;
-  margin-bottom: 35px;
-}
-
-.header h1 {
-  font-family: 'Bebas Neue', sans-serif;
-  font-size: 3rem;
-  font-weight: 400;
-  letter-spacing: 6px;
-  color: #f0e8d8;
-  text-shadow:
-    0 0 30px rgba(255,140,0,0.4),
-    0 2px 4px rgba(0,0,0,0.8);
-  margin-bottom: 8px;
-  text-transform: uppercase;
-}
-
-.header h1 i {
-  color: #ff8c00;
-  text-shadow: 0 0 20px rgba(255,140,0,0.8);
-}
-
-.header p {
-  font-size: 1rem;
-  color: #8a9ab0;
-  letter-spacing: 2px;
-  text-transform: uppercase;
-  font-weight: 500;
-}
-
-.header small {
-  font-family: 'Share Tech Mono', monospace;
-  color: #5a6a7a;
-  font-size: 0.78rem;
-  letter-spacing: 1px;
-}
-
-/* ===================== PANELS ===================== */
-.control-panel {
-  background: rgba(20, 22, 28, 0.85);
-  backdrop-filter: blur(12px);
-  border-radius: 6px;
-  padding: 25px;
-  box-shadow:
-    0 4px 30px rgba(0,0,0,0.6),
-    inset 0 1px 0 rgba(255,255,255,0.05),
-    inset 0 -1px 0 rgba(0,0,0,0.4);
-  border: 1px solid rgba(255,140,0,0.2);
-  border-top: 2px solid rgba(255,140,0,0.4);
-  margin-bottom: 20px;
-  position: relative;
-}
-
-/* Corner bolt decoration */
-.control-panel::before,
-.control-panel::after {
-  content: '⬡';
-  position: absolute;
-  font-size: 8px;
-  color: rgba(180,160,100,0.35);
-  top: 6px;
-}
-.control-panel::before { left: 10px; }
-.control-panel::after  { right: 10px; }
-
-.preview-panel {
-  background: rgba(15, 16, 20, 0.9);
-  backdrop-filter: blur(12px);
-  border-radius: 6px;
-  padding: 40px;
-  box-shadow:
-    0 4px 30px rgba(0,0,0,0.7),
-    inset 0 0 60px rgba(0,0,0,0.3);
-  border: 1px solid rgba(255,140,0,0.15);
-  border-top: 2px solid rgba(255,140,0,0.3);
-  min-height: 500px;
+/* ===== TOP NAV BAR ===== */
+.top-bar {
+  background: #ffffff;
+  border-bottom: 1px solid #e2e5ea;
+  padding: 14px 28px;
   display: flex;
   align-items: center;
-  justify-content: center;
-  position: relative;
-  /* Cross-hatch pattern inside preview */
-  background-image:
-    repeating-linear-gradient(45deg, rgba(255,255,255,0.012) 0px, rgba(255,255,255,0.012) 1px, transparent 1px, transparent 8px),
-    repeating-linear-gradient(-45deg, rgba(255,255,255,0.012) 0px, rgba(255,255,255,0.012) 1px, transparent 1px, transparent 8px),
-    linear-gradient(160deg, #141620 0%, #0d0e12 100%);
-}
-
-/* ===================== SECTION TITLES ===================== */
-.section-title {
-  font-family: 'Bebas Neue', sans-serif;
-  color: #ff8c00;
-  font-size: 1.1rem;
-  font-weight: 400;
-  letter-spacing: 4px;
-  margin-bottom: 18px;
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  text-transform: uppercase;
-  border-bottom: 1px solid rgba(255,140,0,0.2);
-  padding-bottom: 8px;
-}
-
-.section-title i {
-  color: #ff8c00;
-  text-shadow: 0 0 10px rgba(255,140,0,0.6);
-}
-
-/* ===================== CONTROLS ===================== */
-.control-group {
-  margin-bottom: 18px;
-}
-
-.control-label {
-  color: #8a9ab0;
-  font-size: 0.82rem;
-  margin-bottom: 8px;
-  display: flex;
   justify-content: space-between;
-  align-items: center;
-  text-transform: uppercase;
-  letter-spacing: 1.5px;
-  font-weight: 600;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  box-shadow: 0 1px 8px rgba(0,0,0,0.06);
 }
 
-.control-value {
-  background: rgba(255,140,0,0.12);
-  padding: 2px 10px;
-  border-radius: 3px;
-  font-family: 'Share Tech Mono', monospace;
-  font-weight: 400;
-  color: #ffa040;
-  border: 1px solid rgba(255,140,0,0.3);
-  font-size: 0.82rem;
-}
-
-/* Range Sliders */
-.form-range {
-  cursor: pointer;
-  height: 4px;
-  background: rgba(255,255,255,0.1);
-  border-radius: 2px;
-  outline: none;
-  accent-color: #ff8c00;
-}
-
-.form-range::-webkit-slider-track {
-  background: linear-gradient(90deg, #ff8c00, #ffaa40);
-  border-radius: 2px;
-}
-
-.form-range::-webkit-slider-thumb {
-  background: #ff8c00;
-  box-shadow: 0 0 8px rgba(255,140,0,0.7), 0 2px 6px rgba(0,0,0,0.5);
-  width: 16px;
-  height: 16px;
-  border-radius: 2px;
-  cursor: pointer;
-  border: 2px solid #ffcc80;
-}
-
-.form-range::-moz-range-thumb {
-  background: #ff8c00;
-  box-shadow: 0 0 8px rgba(255,140,0,0.7);
-  width: 16px;
-  height: 16px;
-  border-radius: 2px;
-  cursor: pointer;
-  border: 2px solid #ffcc80;
-}
-
-/* Selects & Inputs */
-.form-select, .form-control {
-  background: rgba(10, 11, 15, 0.8);
-  border: 1px solid rgba(255,140,0,0.25);
-  color: #c8d0dc;
-  border-radius: 4px;
-  font-family: 'Rajdhani', sans-serif;
-  font-size: 0.9rem;
-  letter-spacing: 0.5px;
-}
-
-.form-select:focus, .form-control:focus {
-  background: rgba(15, 16, 22, 0.9);
-  border-color: rgba(255,140,0,0.6);
-  color: #e8e0d0;
-  box-shadow: 0 0 0 2px rgba(255,140,0,0.15), 0 0 10px rgba(255,140,0,0.2);
-  outline: none;
-}
-
-.form-select option {
-  background: #111318;
-  color: #c8d0dc;
-}
-
-/* Color Pickers */
-.color-picker-wrapper {
+.top-bar h1 {
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: #1a1a2e;
+  letter-spacing: -0.3px;
   display: flex;
-  gap: 10px;
   align-items: center;
+  gap: 10px;
 }
 
-.form-control-color {
-  width: 55px;
-  height: 38px;
+.icon-badge {
+  width: 34px; height: 34px;
+  background: linear-gradient(135deg, #6366f1, #8b5cf6);
+  border-radius: 8px;
+  display: flex; align-items: center; justify-content: center;
+  color: white; font-size: 0.85rem;
+  flex-shrink: 0;
+}
+
+.shortcuts {
+  font-size: 0.72rem;
+  color: #94a3b8;
+}
+
+.shortcuts kbd {
+  background: #f1f3f7;
+  border: 1px solid #dde1e9;
   border-radius: 4px;
-  border: 1px solid rgba(255,140,0,0.3);
-  cursor: pointer;
-  background: transparent;
+  padding: 1px 5px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.68rem;
+  color: #64748b;
 }
 
-.form-control-color::-webkit-color-swatch-wrapper { padding: 2px; }
-.form-control-color::-webkit-color-swatch { border-radius: 3px; border: none; }
-
-/* ===================== PRESET GRID ===================== */
-.preset-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(90px, 1fr));
-  gap: 8px;
-  margin-bottom: 20px;
+/* ===== MAIN LAYOUT ===== */
+.main-wrap {
+  max-width: 1300px;
+  margin: 0 auto;
+  padding: 24px 24px 110px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
 }
 
-.preset-item {
-  height: 72px;
-  border-radius: 4px;
-  cursor: pointer;
-  transition: transform 0.2s, box-shadow 0.2s, border-color 0.2s;
-  border: 1px solid rgba(255,140,0,0.2);
-  position: relative;
+/* ===== CARDS ===== */
+.card-block {
+  background: #ffffff;
+  border-radius: 14px;
+  border: 1px solid #e2e5ea;
+  box-shadow: 0 1px 12px rgba(0,0,0,0.05);
   overflow: hidden;
 }
 
-.preset-item::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background: repeating-linear-gradient(
-    135deg, transparent, transparent 4px,
-    rgba(0,0,0,0.05) 4px, rgba(0,0,0,0.05) 5px
-  );
+.card-header-bar {
+  padding: 12px 20px;
+  border-bottom: 1px solid #f0f2f5;
+  background: #fafbfc;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
 
-.preset-item:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 4px 16px rgba(255,140,0,0.25);
-  border-color: rgba(255,140,0,0.5);
-}
-
-.preset-item.active {
-  border-color: #ff8c00;
-  box-shadow: 0 0 16px rgba(255,140,0,0.4), inset 0 0 8px rgba(255,140,0,0.1);
-}
-
-.preset-name {
-  position: absolute;
-  bottom: 4px;
-  left: 50%;
-  transform: translateX(-50%);
-  font-family: 'Share Tech Mono', monospace;
-  font-size: 0.62rem;
-  color: #e8e0d0;
-  background: rgba(0,0,0,0.7);
-  padding: 1px 6px;
-  border-radius: 2px;
-  white-space: nowrap;
-  letter-spacing: 1px;
-  text-transform: uppercase;
-}
-
-/* ===================== BUTTONS ===================== */
-.btn-custom {
-  background: rgba(20, 22, 28, 0.9);
-  border: 1px solid rgba(255,140,0,0.35);
-  color: #c8a060;
-  padding: 8px 16px;
-  border-radius: 3px;
-  font-family: 'Rajdhani', sans-serif;
-  font-weight: 600;
-  font-size: 0.82rem;
-  letter-spacing: 1.5px;
-  text-transform: uppercase;
-  transition: all 0.2s;
-}
-
-.btn-custom:hover {
-  background: rgba(255,140,0,0.15);
-  border-color: #ff8c00;
-  color: #ffa040;
-  transform: translateY(-1px);
-  box-shadow: 0 4px 12px rgba(255,140,0,0.2), 0 0 8px rgba(255,140,0,0.15);
-}
-
-.btn-custom i {
-  margin-right: 5px;
+.card-title {
   font-size: 0.75rem;
+  font-weight: 600;
+  color: #64748b;
+  text-transform: uppercase;
+  letter-spacing: 0.9px;
+  display: flex;
+  align-items: center;
+  gap: 7px;
 }
 
-/* ===================== GLASS PREVIEW ===================== */
-.glass-preview {
-  width: 100%;
-  max-width: 400px;
-  height: 300px;
-  position: relative;
-  transition: all 0.3s ease;
-  cursor: pointer;
-}
+.card-title i { color: #6366f1; }
 
-.glass-preview:hover {
-  transform: scale(1.02);
-  filter: drop-shadow(0 0 20px rgba(255,140,0,0.2));
-}
-
-.shape-circle {
-  border-radius: 50% !important;
-  width: 300px !important;
-  height: 300px !important;
-}
-
-.shape-button {
-  width: 200px !important;
-  height: 60px !important;
+/* ===== PREVIEW CANVAS ===== */
+.preview-canvas {
+  min-height: 400px;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 1.1rem;
-  font-weight: 600;
-}
-
-.shape-input {
-  width: 350px !important;
-  height: 50px !important;
-  padding: 0 20px;
-  font-size: 1rem;
-}
-
-/* ===================== CODE OUTPUT ===================== */
-.code-output {
-  background: rgba(6, 7, 10, 0.9);
-  border-radius: 4px;
-  padding: 20px;
-  margin-top: 15px;
-  max-height: 400px;
-  overflow-y: auto;
   position: relative;
-  border: 1px solid rgba(255,140,0,0.15);
-  border-left: 3px solid rgba(255,140,0,0.4);
+  overflow: hidden;
+  background:
+    radial-gradient(ellipse at 30% 40%, rgba(99,102,241,0.4) 0%, transparent 55%),
+    radial-gradient(ellipse at 75% 65%, rgba(139,92,246,0.35) 0%, transparent 50%),
+    radial-gradient(ellipse at 60% 10%, rgba(236,72,153,0.25) 0%, transparent 45%),
+    linear-gradient(135deg, #1e1b4b 0%, #312e81 40%, #4c1d95 70%, #1e1b69 100%);
 }
 
-.code-output::-webkit-scrollbar { width: 6px; }
-.code-output::-webkit-scrollbar-track { background: rgba(0,0,0,0.3); }
-.code-output::-webkit-scrollbar-thumb { background: rgba(255,140,0,0.3); border-radius: 3px; }
-
-.code-output pre {
-  color: #8fb8a0;
-  margin: 0;
-  font-family: 'Share Tech Mono', 'Courier New', monospace;
-  font-size: 0.85rem;
-  line-height: 1.7;
-  white-space: pre-wrap;
-  word-wrap: break-word;
-}
-
-/* Only CSS tab shown now */
-.code-tabs {
-  display: flex;
-  gap: 8px;
-  margin-bottom: 12px;
-}
-
-.code-tab {
-  padding: 6px 16px;
-  background: rgba(10,11,15,0.8);
-  border: 1px solid rgba(255,140,0,0.2);
-  border-radius: 3px;
-  color: #8a9ab0;
-  cursor: pointer;
-  transition: all 0.2s;
-  font-family: 'Rajdhani', sans-serif;
-  font-weight: 600;
-  font-size: 0.82rem;
-  letter-spacing: 2px;
-  text-transform: uppercase;
-}
-
-.code-tab:hover {
-  border-color: rgba(255,140,0,0.4);
-  color: #c8a060;
-}
-
-.code-tab.active {
-  background: rgba(255,140,0,0.12);
-  border-color: rgba(255,140,0,0.5);
-  color: #ffa040;
-  box-shadow: 0 0 8px rgba(255,140,0,0.15);
-}
-
-.copy-btn {
+.blob1, .blob2 {
   position: absolute;
-  top: 10px;
-  right: 10px;
-  background: rgba(255,140,0,0.1);
-  border: 1px solid rgba(255,140,0,0.3);
-  color: #c8a060;
-  padding: 4px 14px;
-  border-radius: 3px;
+  border-radius: 50%;
+  pointer-events: none;
+  filter: blur(45px);
+  z-index: 0;
+}
+.blob1 { width:220px; height:220px; background:rgba(99,102,241,0.35); top:40px; left:60px; }
+.blob2 { width:180px; height:180px; background:rgba(236,72,153,0.3); bottom:40px; right:80px; }
+
+.glass-preview {
+  width: 380px;
+  height: 260px;
+  position: relative;
+  z-index: 1;
+  transition: all 0.3s ease;
   cursor: pointer;
-  font-family: 'Rajdhani', sans-serif;
-  font-size: 0.8rem;
-  letter-spacing: 1px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.glass-preview:hover { transform: scale(1.03); }
+
+.glass-inner {
+  color: rgba(255,255,255,0.9);
+  font-size: 1.05rem;
   font-weight: 600;
-  text-transform: uppercase;
+  text-align: center;
+  padding: 20px;
+  letter-spacing: 0.4px;
+  pointer-events: none;
+}
+
+.shape-circle  { border-radius:50% !important; width:280px !important; height:280px !important; }
+.shape-button  { width:200px !important; height:56px !important; }
+.shape-input   { width:340px !important; height:48px !important; }
+
+/* preview dots */
+.win-dots { display:flex; gap:5px; }
+.wd { width:10px; height:10px; border-radius:50%; }
+.wd-r{background:#ff5f56;} .wd-y{background:#ffbd2e;} .wd-g{background:#27c93f;}
+
+/* ===== PRESETS ===== */
+.preset-grid {
+  display: grid;
+  grid-template-columns: repeat(8, 1fr);
+  gap: 10px;
+  padding: 16px 20px;
+}
+
+@media(max-width:800px){ .preset-grid{grid-template-columns:repeat(4,1fr);} }
+
+.preset-item {
+  height: 68px;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: transform 0.2s, box-shadow 0.2s;
+  border: 2px solid transparent;
+  position: relative;
+  overflow: hidden;
+}
+.preset-item:hover { transform:translateY(-3px); box-shadow:0 6px 18px rgba(0,0,0,0.18); }
+.preset-item.active { border-color:#6366f1; box-shadow:0 0 0 3px rgba(99,102,241,0.2); }
+.preset-name {
+  position:absolute; bottom:4px; left:50%; transform:translateX(-50%);
+  font-size:0.6rem; color:#fff;
+  background:rgba(0,0,0,0.55);
+  padding:1px 6px; border-radius:4px;
+  white-space:nowrap; font-weight:600; letter-spacing:0.3px;
+}
+
+/* ===== SLIDERS GRID ===== */
+.controls-body { padding: 22px 24px; }
+
+.sliders-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 18px 36px;
+}
+@media(max-width:900px){ .sliders-grid{grid-template-columns:repeat(2,1fr);} }
+@media(max-width:560px){ .sliders-grid{grid-template-columns:1fr;} }
+
+.slider-item { display:flex; flex-direction:column; gap:7px; }
+
+.slider-label-row {
+  display:flex; justify-content:space-between; align-items:center;
+}
+
+.slider-label {
+  font-size: 0.75rem; font-weight: 600;
+  color: #475569; text-transform: uppercase;
+  letter-spacing: 0.7px;
+  display: flex; align-items: center; gap: 5px;
+}
+.slider-label i { color: #6366f1; font-size: 0.68rem; width: 12px; }
+
+.slider-val {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.73rem; font-weight: 500;
+  color: #6366f1;
+  background: #eef2ff;
+  padding: 2px 9px;
+  border-radius: 5px;
+  border: 1px solid #c7d2fe;
+  min-width: 54px; text-align: center;
+}
+
+/* Custom Range */
+input[type="range"] {
+  -webkit-appearance: none; appearance: none;
+  width: 100%; height: 5px;
+  background: #e2e8f0;
+  border-radius: 3px; outline: none; cursor: pointer;
+}
+input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 16px; height: 16px;
+  border-radius: 50%;
+  background: #6366f1;
+  border: 2px solid #fff;
+  box-shadow: 0 1px 6px rgba(99,102,241,0.4);
+  cursor: pointer; transition: transform 0.15s;
+}
+input[type="range"]::-webkit-slider-thumb:hover { transform: scale(1.25); }
+input[type="range"]::-moz-range-thumb {
+  width:16px; height:16px; border-radius:50%;
+  background:#6366f1; border:2px solid #fff;
+  box-shadow:0 1px 6px rgba(99,102,241,0.4); cursor:pointer;
+}
+
+.ctrl-divider {
+  border: none; border-top: 1px solid #f0f2f5; margin: 20px 0;
+}
+
+/* Options Row */
+.options-row {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+}
+@media(max-width:800px){ .options-row{grid-template-columns:repeat(2,1fr);} }
+@media(max-width:480px){ .options-row{grid-template-columns:1fr;} }
+
+.option-group label {
+  display: block;
+  font-size: 0.75rem; font-weight: 600;
+  color: #475569; text-transform: uppercase;
+  letter-spacing: 0.7px; margin-bottom: 8px;
+}
+
+.form-select, .form-control {
+  font-size: 0.84rem;
+  border: 1px solid #e2e8f0;
+  border-radius: 8px;
+  color: #334155;
+  background: #f8fafc;
+  padding: 8px 12px;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+.form-select:focus, .form-control:focus {
+  border-color: #6366f1;
+  box-shadow: 0 0 0 3px rgba(99,102,241,0.12);
+  outline: none; background: #fff;
+}
+.form-select option { background:#fff; color:#334155; }
+
+.color-row { display:flex; gap:8px; align-items:center; }
+input[type="color"] {
+  width:42px; height:36px;
+  border-radius:8px; border:1px solid #e2e8f0;
+  cursor:pointer; padding:2px; background:#f8fafc; flex-shrink:0;
+}
+input[type="color"]::-webkit-color-swatch-wrapper{padding:0;}
+input[type="color"]::-webkit-color-swatch{border-radius:6px;border:none;}
+
+/* ===== CODE BLOCK ===== */
+.code-body {
+  background: #1e1e2e;
+  padding: 20px 24px;
+  max-height: 190px;
+  overflow-y: auto;
+}
+.code-body::-webkit-scrollbar{width:5px;}
+.code-body::-webkit-scrollbar-track{background:#2a2a3e;}
+.code-body::-webkit-scrollbar-thumb{background:#6366f1;border-radius:3px;}
+.code-body pre {
+  color: #a6e3a1; margin: 0;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.81rem; line-height: 1.75;
+  white-space: pre-wrap; word-wrap: break-word;
+}
+
+.copy-code-btn {
+  background: #2a2a3e;
+  border: 1px solid rgba(99,102,241,0.4);
+  color: #a6e3a1;
+  padding: 4px 14px; border-radius: 6px;
+  cursor: pointer;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.72rem; font-weight: 500;
   transition: all 0.2s;
 }
+.copy-code-btn:hover { background:#6366f1; color:#fff; border-color:#6366f1; }
 
-.copy-btn:hover {
-  background: rgba(255,140,0,0.2);
-  border-color: #ff8c00;
-  color: #ffa040;
-}
+/* Syntax colors */
+.kw-prop { color: #89dceb; }
+.kw-val  { color: #cba6f7; }
+.kw-unit { color: #a6e3a1; }
+.kw-fn   { color: #fab387; }
 
-/* ===================== TOAST ===================== */
-.toast-notification {
+/* ===== TOOLS BOTTOM BAR ===== */
+.tools-bar {
   position: fixed;
-  bottom: 30px;
-  right: 30px;
-  background: rgba(10,11,15,0.95);
-  color: #ffa040;
-  padding: 12px 22px;
-  border-radius: 4px;
+  bottom: 0; left: 0; right: 0;
+  background: #ffffff;
+  border-top: 1px solid #e2e5ea;
+  padding: 14px 28px;
+  z-index: 200;
+  box-shadow: 0 -4px 24px rgba(0,0,0,0.08);
+}
+
+.tools-inner {
+  max-width: 1300px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.tool-btn {
+  display: inline-flex; align-items: center; gap: 7px;
+  padding: 9px 20px;
+  border-radius: 9px;
+  font-size: 0.82rem; font-weight: 600;
+  border: 1px solid transparent;
+  cursor: pointer;
+  transition: all 0.18s;
+  letter-spacing: 0.2px;
+  white-space: nowrap;
+  font-family: 'Inter', sans-serif;
+}
+.tool-btn i { font-size: 0.78rem; }
+
+.tb-primary { background:#6366f1; color:#fff; border-color:#6366f1; }
+.tb-primary:hover { background:#4f46e5; border-color:#4f46e5; box-shadow:0 4px 14px rgba(99,102,241,0.35); transform:translateY(-1px); }
+
+.tb-secondary { background:#f8fafc; color:#475569; border-color:#e2e8f0; }
+.tb-secondary:hover { background:#f1f5f9; border-color:#cbd5e1; transform:translateY(-1px); }
+
+.tb-green { background:#f0fdf4; color:#16a34a; border-color:#bbf7d0; }
+.tb-green:hover { background:#dcfce7; border-color:#86efac; transform:translateY(-1px); }
+
+.tb-yellow { background:#fffbeb; color:#d97706; border-color:#fde68a; }
+.tb-yellow:hover { background:#fef3c7; border-color:#fcd34d; transform:translateY(-1px); }
+
+.tb-red { background:#fff1f2; color:#e11d48; border-color:#fecdd3; }
+.tb-red:hover { background:#ffe4e6; border-color:#fda4af; transform:translateY(-1px); }
+
+.t-sep { width:1px; height:28px; background:#e2e8f0; flex-shrink:0; }
+
+/* ===== TOAST ===== */
+.toast-msg {
+  position: fixed; bottom: 80px; right: 28px; z-index: 9999;
+  background: #1e1e2e; color: #cdd6f4;
+  padding: 12px 20px; border-radius: 10px;
+  font-size: 0.82rem; font-weight: 500;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+  border-left: 3px solid #6366f1;
   display: none;
-  z-index: 1000;
-  box-shadow: 0 4px 20px rgba(0,0,0,0.6), 0 0 20px rgba(255,140,0,0.2);
-  border: 1px solid rgba(255,140,0,0.4);
-  border-left: 3px solid #ff8c00;
-  font-family: 'Share Tech Mono', monospace;
-  font-size: 0.85rem;
-  letter-spacing: 0.5px;
+  animation: slideIn 0.25s ease;
+  font-family: 'JetBrains Mono', monospace;
 }
-
-/* ===================== SYNTAX HIGHLIGHT ===================== */
-.keyword-property { color: #6aa0e0; }
-.keyword-value    { color: #c89060; }
-.keyword-unit     { color: #80b888; }
-.keyword-function { color: #d4a860; }
-
-/* ===================== RESPONSIVE ===================== */
-@media (max-width: 768px) {
-  .header h1 { font-size: 2rem; }
-  .control-panel, .preview-panel { padding: 15px; }
-  .glass-preview { max-width: 300px; height: 200px; }
-  .preset-grid { grid-template-columns: repeat(auto-fill, minmax(72px, 1fr)); }
-}
-
-/* Thin orange divider lines */
-hr.ind-divider {
-  border: none;
-  border-top: 1px solid rgba(255,140,0,0.2);
-  margin: 15px 0;
+@keyframes slideIn {
+  from{ opacity:0; transform:translateX(20px); }
+  to  { opacity:1; transform:translateX(0); }
 }
 </style>
 </head>
 <body>
 
-<div class="container-fluid">
-  <div class="header">
-    <h1><i class="fas fa-wand-magic-sparkles"></i> CSS Glassmorphism Generator</h1>
-    <p>Create stunning glass effects — advanced controls &amp; instant export</p>
-    <small>
-      ⌨ Shortcuts: Ctrl+C (Copy CSS) &nbsp;|&nbsp; Ctrl+S (Save) &nbsp;|&nbsp; Ctrl+R (Reset) &nbsp;|&nbsp; Ctrl+D (Download) &nbsp;|&nbsp; Space (Random)
-    </small>
+<!-- TOP BAR -->
+<div class="top-bar">
+  <h1>
+    <span class="icon-badge"><i class="fas fa-wand-magic-sparkles"></i></span>
+    Glassmorphism Generator Pro
+  </h1>
+  <div class="shortcuts">
+    <kbd>Ctrl+C</kbd> Copy &nbsp;
+    <kbd>Ctrl+S</kbd> Save &nbsp;
+    <kbd>Ctrl+R</kbd> Reset &nbsp;
+    <kbd>Ctrl+D</kbd> Download &nbsp;
+    <kbd>Space</kbd> Random
+  </div>
+</div>
+
+<!-- MAIN -->
+<div class="main-wrap">
+
+  <!-- 1. PREVIEW (TOP) -->
+  <div class="card-block">
+    <div class="card-header-bar">
+      <div class="win-dots">
+        <span class="wd wd-r"></span>
+        <span class="wd wd-y"></span>
+        <span class="wd wd-g"></span>
+      </div>
+      <div class="card-title"><i class="fas fa-eye"></i> Live Preview</div>
+      <span style="font-size:0.72rem;color:#94a3b8;">Hover to interact</span>
+    </div>
+    <div class="preview-canvas" id="previewCanvas">
+      <div class="blob1"></div>
+      <div class="blob2"></div>
+      <div class="glass-preview" id="glassPreview">
+        <div class="glass-inner">Glassmorphism Effect</div>
+      </div>
+    </div>
   </div>
 
-  <div class="row g-4">
-    <!-- Control Panel -->
-    <div class="col-lg-5">
-      <div class="control-panel">
+  <!-- 2. PRESETS -->
+  <div class="card-block">
+    <div class="card-header-bar">
+      <div class="card-title"><i class="fas fa-palette"></i> Preset Library</div>
+      <span style="font-size:0.72rem;color:#94a3b8;">Click any preset to apply</span>
+    </div>
+    <div class="preset-grid" id="presetGrid"></div>
+  </div>
 
-        <!-- Preset Library -->
-        <div class="section-title">
-          <i class="fas fa-palette"></i> Preset Library
-        </div>
-        <div class="preset-grid" id="presetGrid"></div>
-        <hr class="ind-divider">
+  <!-- 3. CONTROLS -->
+  <div class="card-block">
+    <div class="card-header-bar">
+      <div class="card-title"><i class="fas fa-sliders"></i> Controls</div>
+    </div>
+    <div class="controls-body">
 
-        <!-- Blur -->
-        <div class="control-group">
-          <div class="control-label">
-            <span><i class="fas fa-droplet"></i> Blur</span>
-            <span class="control-value"><span id="blurValue">15</span> px</span>
+      <!-- Sliders -->
+      <div class="sliders-grid">
+
+        <div class="slider-item">
+          <div class="slider-label-row">
+            <span class="slider-label"><i class="fas fa-droplet"></i> Blur</span>
+            <span class="slider-val" id="blurVal">15px</span>
           </div>
-          <input type="range" class="form-range" id="blurSlider" min="0" max="50" value="15">
-        </div>
-
-        <!-- Opacity -->
-        <div class="control-group">
-          <div class="control-label">
-            <span><i class="fas fa-adjust"></i> Opacity</span>
-            <span class="control-value"><span id="opacityValue">0.2</span></span>
-          </div>
-          <input type="range" class="form-range" id="opacitySlider" min="0" max="1" step="0.05" value="0.2">
+          <input type="range" id="blurSlider" min="0" max="50" value="15">
         </div>
 
-        <!-- Border Radius -->
-        <div class="control-group">
-          <div class="control-label">
-            <span><i class="fas fa-circle"></i> Border Radius</span>
-            <span class="control-value"><span id="radiusValue">20</span> px</span>
+        <div class="slider-item">
+          <div class="slider-label-row">
+            <span class="slider-label"><i class="fas fa-circle-half-stroke"></i> Opacity</span>
+            <span class="slider-val" id="opacityVal">0.20</span>
           </div>
-          <input type="range" class="form-range" id="radiusSlider" min="0" max="100" value="20">
+          <input type="range" id="opacitySlider" min="0" max="1" step="0.01" value="0.2">
         </div>
 
-        <!-- Border Width -->
-        <div class="control-group">
-          <div class="control-label">
-            <span><i class="fas fa-border-style"></i> Border Width</span>
-            <span class="control-value"><span id="borderWidthValue">1</span> px</span>
+        <div class="slider-item">
+          <div class="slider-label-row">
+            <span class="slider-label"><i class="fas fa-vector-square"></i> Radius</span>
+            <span class="slider-val" id="radiusVal">20px</span>
           </div>
-          <input type="range" class="form-range" id="borderWidthSlider" min="0" max="5" step="0.5" value="1">
+          <input type="range" id="radiusSlider" min="0" max="100" value="20">
         </div>
 
-        <!-- Shadow -->
-        <div class="control-group">
-          <div class="control-label">
-            <span><i class="fas fa-cloud"></i> Shadow</span>
-            <span class="control-value"><span id="shadowValue">0.3</span></span>
+        <div class="slider-item">
+          <div class="slider-label-row">
+            <span class="slider-label"><i class="fas fa-border-all"></i> Border</span>
+            <span class="slider-val" id="borderWidthVal">1px</span>
           </div>
-          <input type="range" class="form-range" id="shadowSlider" min="0" max="1" step="0.05" value="0.3">
+          <input type="range" id="borderWidthSlider" min="0" max="5" step="0.5" value="1">
         </div>
 
-        <!-- Saturation -->
-        <div class="control-group">
-          <div class="control-label">
-            <span><i class="fas fa-sun"></i> Saturation</span>
-            <span class="control-value"><span id="saturationValue">100</span> %</span>
+        <div class="slider-item">
+          <div class="slider-label-row">
+            <span class="slider-label"><i class="fas fa-clone"></i> Shadow</span>
+            <span class="slider-val" id="shadowVal">0.30</span>
           </div>
-          <input type="range" class="form-range" id="saturationSlider" min="50" max="200" value="100">
+          <input type="range" id="shadowSlider" min="0" max="1" step="0.01" value="0.3">
         </div>
 
-        <hr class="ind-divider">
-
-        <!-- Color Mode -->
-        <div class="control-group">
-          <div class="control-label">
-            <span><i class="fas fa-fill-drip"></i> Color Mode</span>
+        <div class="slider-item">
+          <div class="slider-label-row">
+            <span class="slider-label"><i class="fas fa-sun"></i> Saturation</span>
+            <span class="slider-val" id="saturationVal">100%</span>
           </div>
+          <input type="range" id="saturationSlider" min="50" max="200" value="100">
+        </div>
+
+      </div><!-- /sliders-grid -->
+
+      <hr class="ctrl-divider">
+
+      <!-- Options -->
+      <div class="options-row">
+
+        <div class="option-group">
+          <label><i class="fas fa-fill-drip" style="color:#6366f1;margin-right:4px;"></i>Color Mode</label>
           <select class="form-select" id="colorMode">
             <option value="solid">Solid Color</option>
             <option value="gradient">Gradient</option>
           </select>
         </div>
 
-        <!-- Solid Color -->
-        <div class="control-group" id="solidColorGroup">
-          <div class="color-picker-wrapper">
-            <input type="color" class="form-control-color" id="solidColor" value="#ffffff">
+        <div class="option-group" id="solidColorGroup">
+          <label><i class="fas fa-palette" style="color:#6366f1;margin-right:4px;"></i>Glass Color</label>
+          <div class="color-row">
+            <input type="color" id="solidColor" value="#ffffff">
             <input type="text" class="form-control" id="solidColorHex" value="#ffffff">
           </div>
         </div>
 
-        <!-- Gradient Colors -->
-        <div class="control-group d-none" id="gradientGroup">
-          <div class="color-picker-wrapper mb-2">
-            <input type="color" class="form-control-color" id="gradientColor1" value="#ffffff">
+        <div class="option-group d-none" id="gradientGroup">
+          <label><i class="fas fa-swatchbook" style="color:#6366f1;margin-right:4px;"></i>Gradient</label>
+          <div class="color-row mb-2">
+            <input type="color" id="gradientColor1" value="#ffffff">
             <input type="text" class="form-control" id="gradientHex1" value="#ffffff">
           </div>
-          <div class="color-picker-wrapper">
-            <input type="color" class="form-control-color" id="gradientColor2" value="#e0e7ff">
+          <div class="color-row">
+            <input type="color" id="gradientColor2" value="#e0e7ff">
             <input type="text" class="form-control" id="gradientHex2" value="#e0e7ff">
           </div>
         </div>
 
-        <!-- Shape -->
-        <div class="control-group">
-          <div class="control-label">
-            <span><i class="fas fa-shapes"></i> Shape</span>
-          </div>
+        <div class="option-group">
+          <label><i class="fas fa-shapes" style="color:#6366f1;margin-right:4px;"></i>Shape</label>
           <select class="form-select" id="shapeSelect">
             <option value="card">Card</option>
             <option value="circle">Circle</option>
@@ -678,241 +554,194 @@ hr.ind-divider {
           </select>
         </div>
 
-        <hr class="ind-divider">
-
-        <!-- Action Buttons -->
-        <div class="section-title mt-2">
-          <i class="fas fa-download"></i> Export &amp; Actions
-        </div>
-        <div class="d-flex flex-wrap gap-2">
-          <button class="btn btn-custom btn-sm" onclick="copyCode('css')">
-            <i class="fas fa-copy"></i> Copy CSS
-          </button>
-          <button class="btn btn-custom btn-sm" onclick="saveCustomPreset()">
-            <i class="fas fa-save"></i> Save
-          </button>
-          <button class="btn btn-custom btn-sm" onclick="loadCustomPreset()">
-            <i class="fas fa-folder-open"></i> Load
-          </button>
-          <button class="btn btn-custom btn-sm" onclick="downloadHTML()">
-            <i class="fas fa-download"></i> Download
-          </button>
-          <button class="btn btn-custom btn-sm" onclick="resetToDefault()">
-            <i class="fas fa-undo"></i> Reset
-          </button>
-          <button class="btn btn-custom btn-sm" onclick="randomize()">
-            <i class="fas fa-dice"></i> Random
-          </button>
-        </div>
-
       </div>
+
     </div>
+  </div><!-- /controls -->
 
-    <!-- Preview Panel -->
-    <div class="col-lg-7">
-      <div class="preview-panel" id="previewPanel">
-        <div class="glass-preview" id="glassPreview">
-          <div style="display:flex;align-items:center;justify-content:center;height:100%;color:#ffffff;font-size:1.2rem;text-align:center;padding:20px;font-weight:600;font-family:'Rajdhani',sans-serif;letter-spacing:2px;text-transform:uppercase;">
-            Glassmorphism Effect
-          </div>
-        </div>
-      </div>
-
-      <!-- Code Output — CSS only -->
-      <div class="control-panel mt-3">
-        <div class="code-tabs">
-          <div class="code-tab active">CSS</div>
-        </div>
-        <div class="code-output">
-          <button class="copy-btn" onclick="copyCurrentCode()">
-            <i class="fas fa-copy"></i> Copy
-          </button>
-          <pre id="codeOutput"></pre>
-        </div>
-      </div>
+  <!-- 4. CSS CODE -->
+  <div class="card-block">
+    <div class="card-header-bar">
+      <div class="card-title"><i class="fas fa-code"></i> Generated CSS</div>
+      <button class="copy-code-btn" onclick="copyCurrentCode()">
+        <i class="fas fa-copy"></i> Copy
+      </button>
     </div>
+    <div class="code-body">
+      <pre id="codeOutput"></pre>
+    </div>
+  </div>
+
+</div><!-- /main-wrap -->
+
+<!-- TOOLS BAR (BOTTOM STICKY) -->
+<div class="tools-bar">
+  <div class="tools-inner">
+    <button class="tool-btn tb-primary" onclick="copyCode()">
+      <i class="fas fa-copy"></i> Copy CSS
+    </button>
+    <div class="t-sep"></div>
+    <button class="tool-btn tb-green" onclick="saveCustomPreset()">
+      <i class="fas fa-floppy-disk"></i> Save Preset
+    </button>
+    <button class="tool-btn tb-secondary" onclick="loadCustomPreset()">
+      <i class="fas fa-folder-open"></i> Load Preset
+    </button>
+    <div class="t-sep"></div>
+    <button class="tool-btn tb-secondary" onclick="downloadHTML()">
+      <i class="fas fa-download"></i> Download HTML
+    </button>
+    <div class="t-sep"></div>
+    <button class="tool-btn tb-yellow" onclick="randomize()">
+      <i class="fas fa-dice"></i> Random
+    </button>
+    <button class="tool-btn tb-red" onclick="resetToDefault()">
+      <i class="fas fa-rotate-left"></i> Reset
+    </button>
   </div>
 </div>
 
-<div class="toast-notification" id="toast"></div>
+<!-- Toast -->
+<div class="toast-msg" id="toast"></div>
 
 <script>
 const presets = [
-  { name: 'Classic',  blur: 15, opacity: 0.2,  radius: 20, borderWidth: 1,   shadow: 0.3,  saturation: 100, color: '#ffffff',  mode: 'solid' },
-  { name: 'Frosted',  blur: 25, opacity: 0.15, radius: 15, borderWidth: 1.5, shadow: 0.4,  saturation: 90,  color: '#f0f0f0',  mode: 'solid' },
-  { name: 'Crystal',  blur: 8,  opacity: 0.1,  radius: 25, borderWidth: 0.5, shadow: 0.2,  saturation: 120, color: '#ffffff',  mode: 'solid' },
-  { name: 'Vibrant',  blur: 20, opacity: 0.25, radius: 30, borderWidth: 2,   shadow: 0.5,  saturation: 150, color1: '#ff6b9d', color2: '#c94b4b', mode: 'gradient' },
-  { name: 'Ocean',    blur: 18, opacity: 0.2,  radius: 20, borderWidth: 1,   shadow: 0.35, saturation: 110, color1: '#4facfe', color2: '#00f2fe', mode: 'gradient' },
-  { name: 'Sunset',   blur: 22, opacity: 0.18, radius: 25, borderWidth: 1.5, shadow: 0.4,  saturation: 130, color1: '#fa709a', color2: '#fee140', mode: 'gradient' },
-  { name: 'Mint',     blur: 16, opacity: 0.22, radius: 18, borderWidth: 1,   shadow: 0.3,  saturation: 105, color1: '#a8edea', color2: '#fed6e3', mode: 'gradient' },
-  { name: 'Neon',     blur: 12, opacity: 0.15, radius: 15, borderWidth: 2,   shadow: 0.5,  saturation: 180, color1: '#f857a6', color2: '#ff5858', mode: 'gradient' },
+  { name:'Classic', blur:15, opacity:0.20, radius:20, borderWidth:1,   shadow:0.30, saturation:100, color:'#ffffff',  mode:'solid' },
+  { name:'Frosted', blur:25, opacity:0.15, radius:15, borderWidth:1.5, shadow:0.40, saturation:90,  color:'#f0f0f0',  mode:'solid' },
+  { name:'Crystal', blur:8,  opacity:0.10, radius:25, borderWidth:0.5, shadow:0.20, saturation:120, color:'#ffffff',  mode:'solid' },
+  { name:'Vibrant', blur:20, opacity:0.25, radius:30, borderWidth:2,   shadow:0.50, saturation:150, color1:'#ff6b9d', color2:'#c94b4b', mode:'gradient' },
+  { name:'Ocean',   blur:18, opacity:0.20, radius:20, borderWidth:1,   shadow:0.35, saturation:110, color1:'#4facfe', color2:'#00f2fe', mode:'gradient' },
+  { name:'Sunset',  blur:22, opacity:0.18, radius:25, borderWidth:1.5, shadow:0.40, saturation:130, color1:'#fa709a', color2:'#fee140', mode:'gradient' },
+  { name:'Mint',    blur:16, opacity:0.22, radius:18, borderWidth:1,   shadow:0.30, saturation:105, color1:'#a8edea', color2:'#fed6e3', mode:'gradient' },
+  { name:'Neon',    blur:12, opacity:0.15, radius:15, borderWidth:2,   shadow:0.50, saturation:180, color1:'#f857a6', color2:'#ff5858', mode:'gradient' },
 ];
 
-document.addEventListener('DOMContentLoaded', function() {
-  initializePresets();
-  setupEventListeners();
+document.addEventListener('DOMContentLoaded', () => {
+  buildPresets();
+  bindEvents();
   updatePreview();
 });
 
-function initializePresets() {
+function buildPresets() {
   const grid = document.getElementById('presetGrid');
-  presets.forEach((preset, index) => {
-    const item = document.createElement('div');
-    item.className = 'preset-item';
-    item.style.cssText = `
-      backdrop-filter: blur(${preset.blur}px);
-      background: ${preset.mode === 'solid'
-        ? hexToRGBA(preset.color, preset.opacity)
-        : `linear-gradient(135deg, ${hexToRGBA(preset.color1, preset.opacity)}, ${hexToRGBA(preset.color2, preset.opacity)})`};
-      border-radius: ${preset.radius}px;
-      box-shadow: 0 4px 16px rgba(0,0,0,${preset.shadow});
-      border: 1px solid rgba(255,140,0,0.25);
-    `;
-    item.innerHTML = `<span class="preset-name">${preset.name}</span>`;
-    item.onclick = () => loadPreset(index);
-    grid.appendChild(item);
+  presets.forEach((p, i) => {
+    const el = document.createElement('div');
+    el.className = 'preset-item';
+    const bg = p.mode === 'solid'
+      ? hexRGBA(p.color, p.opacity)
+      : `linear-gradient(135deg,${hexRGBA(p.color1,p.opacity)},${hexRGBA(p.color2,p.opacity)})`;
+    el.style.cssText = `background:${bg};backdrop-filter:blur(${p.blur}px);border-radius:${p.radius}px;box-shadow:0 4px 12px rgba(0,0,0,${p.shadow});`;
+    el.innerHTML = `<span class="preset-name">${p.name}</span>`;
+    el.onclick = () => applyPreset(i);
+    grid.appendChild(el);
   });
 }
 
-function setupEventListeners() {
-  ['blur','opacity','radius','borderWidth','shadow','saturation'].forEach(s => {
-    document.getElementById(s + 'Slider').addEventListener('input', updatePreview);
+function bindEvents() {
+  ['blur','opacity','radius','borderWidth','shadow','saturation'].forEach(id => {
+    document.getElementById(id+'Slider').addEventListener('input', updatePreview);
   });
   document.getElementById('colorMode').addEventListener('change', toggleColorMode);
   document.getElementById('shapeSelect').addEventListener('change', updatePreview);
 
-  ['solidColor','gradientColor1','gradientColor2'].forEach(id => {
-    const colorInput = document.getElementById(id);
-    const hexId = id === 'solidColor' ? 'solidColorHex'
-                : id === 'gradientColor1' ? 'gradientHex1' : 'gradientHex2';
-    const hexInput = document.getElementById(hexId);
-    colorInput.addEventListener('input', (e) => { hexInput.value = e.target.value; updatePreview(); });
-    hexInput.addEventListener('input', (e) => {
-      if (/^#[0-9A-F]{6}$/i.test(e.target.value)) {
-        colorInput.value = e.target.value; updatePreview();
+  const pairs = [
+    ['solidColor','solidColorHex'],
+    ['gradientColor1','gradientHex1'],
+    ['gradientColor2','gradientHex2'],
+  ];
+  pairs.forEach(([c,h]) => {
+    document.getElementById(c).addEventListener('input', e => {
+      document.getElementById(h).value = e.target.value; updatePreview();
+    });
+    document.getElementById(h).addEventListener('input', e => {
+      if(/^#[0-9A-Fa-f]{6}$/.test(e.target.value)){
+        document.getElementById(c).value = e.target.value; updatePreview();
       }
     });
   });
 }
 
-function hexToRGBA(hex, opacity) {
-  const r = parseInt(hex.slice(1,3),16);
-  const g = parseInt(hex.slice(3,5),16);
-  const b = parseInt(hex.slice(5,7),16);
-  return `rgba(${r}, ${g}, ${b}, ${opacity})`;
+function hexRGBA(hex, a) {
+  const r=parseInt(hex.slice(1,3),16), g=parseInt(hex.slice(3,5),16), b=parseInt(hex.slice(5,7),16);
+  return `rgba(${r},${g},${b},${a})`;
+}
+
+function getV() {
+  return {
+    blur:        +document.getElementById('blurSlider').value,
+    opacity:     +document.getElementById('opacitySlider').value,
+    radius:      +document.getElementById('radiusSlider').value,
+    borderWidth: +document.getElementById('borderWidthSlider').value,
+    shadow:      +document.getElementById('shadowSlider').value,
+    saturation:  +document.getElementById('saturationSlider').value,
+    colorMode:    document.getElementById('colorMode').value,
+    solidColor:   document.getElementById('solidColor').value,
+    color1:       document.getElementById('gradientColor1').value,
+    color2:       document.getElementById('gradientColor2').value,
+    shape:        document.getElementById('shapeSelect').value,
+  };
 }
 
 function updatePreview() {
-  const blur        = document.getElementById('blurSlider').value;
-  const opacity     = document.getElementById('opacitySlider').value;
-  const radius      = document.getElementById('radiusSlider').value;
-  const borderWidth = document.getElementById('borderWidthSlider').value;
-  const shadow      = document.getElementById('shadowSlider').value;
-  const saturation  = document.getElementById('saturationSlider').value;
-  const colorMode   = document.getElementById('colorMode').value;
-  const shape       = document.getElementById('shapeSelect').value;
+  const v = getV();
 
-  document.getElementById('blurValue').textContent      = blur;
-  document.getElementById('opacityValue').textContent   = opacity;
-  document.getElementById('radiusValue').textContent    = radius;
-  document.getElementById('borderWidthValue').textContent = borderWidth;
-  document.getElementById('shadowValue').textContent    = shadow;
-  document.getElementById('saturationValue').textContent = saturation;
+  // Update value badges
+  document.getElementById('blurVal').textContent       = v.blur+'px';
+  document.getElementById('opacityVal').textContent    = v.opacity.toFixed(2);
+  document.getElementById('radiusVal').textContent     = v.radius+'px';
+  document.getElementById('borderWidthVal').textContent= v.borderWidth+'px';
+  document.getElementById('shadowVal').textContent     = v.shadow.toFixed(2);
+  document.getElementById('saturationVal').textContent = v.saturation+'%';
 
-  const preview = document.getElementById('glassPreview');
-  preview.classList.remove('shape-circle','shape-button','shape-input');
-  if (shape !== 'card') preview.classList.add('shape-' + shape);
+  const el = document.getElementById('glassPreview');
+  el.classList.remove('shape-circle','shape-button','shape-input');
+  if(v.shape !== 'card') el.classList.add('shape-'+v.shape);
 
-  let background;
-  if (colorMode === 'solid') {
-    background = hexToRGBA(document.getElementById('solidColor').value, opacity);
-  } else {
-    const c1 = document.getElementById('gradientColor1').value;
-    const c2 = document.getElementById('gradientColor2').value;
-    background = `linear-gradient(135deg, ${hexToRGBA(c1, opacity)}, ${hexToRGBA(c2, opacity)})`;
-  }
+  const bg = v.colorMode==='solid'
+    ? hexRGBA(v.solidColor, v.opacity)
+    : `linear-gradient(135deg,${hexRGBA(v.color1,v.opacity)},${hexRGBA(v.color2,v.opacity)})`;
 
-  preview.style.backdropFilter       = `blur(${blur}px) saturate(${saturation}%)`;
-  preview.style.webkitBackdropFilter = `blur(${blur}px) saturate(${saturation}%)`;
-  preview.style.background     = background;
-  preview.style.borderRadius   = `${radius}px`;
-  preview.style.border         = `${borderWidth}px solid rgba(255, 255, 255, 0.3)`;
-  preview.style.boxShadow      = `0 8px 32px rgba(0, 0, 0, ${shadow})`;
+  el.style.backdropFilter       = `blur(${v.blur}px) saturate(${v.saturation}%)`;
+  el.style.webkitBackdropFilter = `blur(${v.blur}px) saturate(${v.saturation}%)`;
+  el.style.background     = bg;
+  el.style.borderRadius   = v.radius+'px';
+  el.style.border         = `${v.borderWidth}px solid rgba(255,255,255,0.35)`;
+  el.style.boxShadow      = `0 8px 32px rgba(0,0,0,${v.shadow})`;
 
-  updateCode();
+  updateCode(v, bg);
 }
 
 function toggleColorMode() {
-  const mode = document.getElementById('colorMode').value;
-  document.getElementById('solidColorGroup').classList.toggle('d-none', mode !== 'solid');
-  document.getElementById('gradientGroup').classList.toggle('d-none', mode === 'solid');
+  const m = document.getElementById('colorMode').value;
+  document.getElementById('solidColorGroup').classList.toggle('d-none', m!=='solid');
+  document.getElementById('gradientGroup').classList.toggle('d-none', m==='solid');
   updatePreview();
 }
 
-function updateCode() {
-  const blur        = document.getElementById('blurSlider').value;
-  const opacity     = document.getElementById('opacitySlider').value;
-  const radius      = document.getElementById('radiusSlider').value;
-  const borderWidth = document.getElementById('borderWidthSlider').value;
-  const shadow      = document.getElementById('shadowSlider').value;
-  const saturation  = document.getElementById('saturationSlider').value;
-  const colorMode   = document.getElementById('colorMode').value;
-
-  let background;
-  if (colorMode === 'solid') {
-    background = hexToRGBA(document.getElementById('solidColor').value, opacity);
-  } else {
-    const c1 = document.getElementById('gradientColor1').value;
-    const c2 = document.getElementById('gradientColor2').value;
-    background = `linear-gradient(135deg, ${hexToRGBA(c1, opacity)}, ${hexToRGBA(c2, opacity)})`;
-  }
-
-  const cssCode = `.glass {\n  backdrop-filter: blur(${blur}px) saturate(${saturation}%);\n  -webkit-backdrop-filter: blur(${blur}px) saturate(${saturation}%);\n  background: ${background};\n  border-radius: ${radius}px;\n  border: ${borderWidth}px solid rgba(255, 255, 255, 0.3);\n  box-shadow: 0 8px 32px rgba(0, 0, 0, ${shadow});\n}`;
-
-  document.getElementById('codeOutput').innerHTML = formatCode(cssCode, 'css');
+function buildCSS(v, bg) {
+  return `.glass {\n  backdrop-filter: blur(${v.blur}px) saturate(${v.saturation}%);\n  -webkit-backdrop-filter: blur(${v.blur}px) saturate(${v.saturation}%);\n  background: ${bg};\n  border-radius: ${v.radius}px;\n  border: ${v.borderWidth}px solid rgba(255, 255, 255, 0.35);\n  box-shadow: 0 8px 32px rgba(0, 0, 0, ${v.shadow});\n}`;
 }
 
-function formatCode(code, type) {
-  if (type === 'css') {
-    return code
-      .replace(/([a-z-]+)(?=:)/g, '<span class="keyword-property">$1</span>')
-      .replace(/: ([^;{]+);/g, ': <span class="keyword-value">$1</span>;')
-      .replace(/(\d+(?:\.\d+)?)(px|%|deg)/g, '<span class="keyword-unit">$1$2</span>')
-      .replace(/(blur|saturate|rgba|linear-gradient)/g, '<span class="keyword-function">$1</span>');
-  }
-  return code;
+function updateCode(v, bg) {
+  const raw = buildCSS(v, bg);
+  document.getElementById('codeOutput').innerHTML = raw
+    .replace(/([\w-]+)(?=\s*:)/g,'<span class="kw-prop">$1</span>')
+    .replace(/:\s*([^;{}\n]+);/g,': <span class="kw-val">$1</span>;')
+    .replace(/(\d+(?:\.\d+)?)(px|%)/g,'<span class="kw-unit">$1$2</span>')
+    .replace(/\b(blur|saturate|rgba|linear-gradient)\b/g,'<span class="kw-fn">$1</span>');
 }
 
-function copyCode(type) {
-  const blur        = document.getElementById('blurSlider').value;
-  const opacity     = document.getElementById('opacitySlider').value;
-  const radius      = document.getElementById('radiusSlider').value;
-  const borderWidth = document.getElementById('borderWidthSlider').value;
-  const shadow      = document.getElementById('shadowSlider').value;
-  const saturation  = document.getElementById('saturationSlider').value;
-  const colorMode   = document.getElementById('colorMode').value;
-
-  let background;
-  if (colorMode === 'solid') {
-    background = hexToRGBA(document.getElementById('solidColor').value, opacity);
-  } else {
-    const c1 = document.getElementById('gradientColor1').value;
-    const c2 = document.getElementById('gradientColor2').value;
-    background = `linear-gradient(135deg, ${hexToRGBA(c1, opacity)}, ${hexToRGBA(c2, opacity)})`;
-  }
-
-  const code = `.glass {\n  backdrop-filter: blur(${blur}px) saturate(${saturation}%);\n  -webkit-backdrop-filter: blur(${blur}px) saturate(${saturation}%);\n  background: ${background};\n  border-radius: ${radius}px;\n  border: ${borderWidth}px solid rgba(255, 255, 255, 0.3);\n  box-shadow: 0 8px 32px rgba(0, 0, 0, ${shadow});\n}`;
-
-  navigator.clipboard.writeText(code).then(() => showToast('✅ CSS code copied!'));
+function copyCode() {
+  const v=getV(), bg=v.colorMode==='solid'?hexRGBA(v.solidColor,v.opacity):`linear-gradient(135deg,${hexRGBA(v.color1,v.opacity)},${hexRGBA(v.color2,v.opacity)})`;
+  navigator.clipboard.writeText(buildCSS(v,bg)).then(()=>toast('✅ CSS copied!'));
 }
 
 function copyCurrentCode() {
-  const code = document.getElementById('codeOutput').textContent;
-  navigator.clipboard.writeText(code).then(() => showToast('✅ Code copied!'));
+  navigator.clipboard.writeText(document.getElementById('codeOutput').textContent).then(()=>toast('✅ Code copied!'));
 }
 
-function loadPreset(index) {
-  const p = presets[index];
+function applyPreset(i) {
+  const p=presets[i];
   document.getElementById('blurSlider').value        = p.blur;
   document.getElementById('opacitySlider').value     = p.opacity;
   document.getElementById('radiusSlider').value      = p.radius;
@@ -920,165 +749,106 @@ function loadPreset(index) {
   document.getElementById('shadowSlider').value      = p.shadow;
   document.getElementById('saturationSlider').value  = p.saturation;
   document.getElementById('colorMode').value         = p.mode;
-
-  if (p.mode === 'solid') {
-    document.getElementById('solidColor').value    = p.color;
-    document.getElementById('solidColorHex').value = p.color;
+  if(p.mode==='solid'){
+    document.getElementById('solidColor').value=p.color;
+    document.getElementById('solidColorHex').value=p.color;
   } else {
-    document.getElementById('gradientColor1').value = p.color1;
-    document.getElementById('gradientHex1').value   = p.color1;
-    document.getElementById('gradientColor2').value = p.color2;
-    document.getElementById('gradientHex2').value   = p.color2;
+    document.getElementById('gradientColor1').value=p.color1;
+    document.getElementById('gradientHex1').value=p.color1;
+    document.getElementById('gradientColor2').value=p.color2;
+    document.getElementById('gradientHex2').value=p.color2;
   }
-
   toggleColorMode();
-  updatePreview();
-  document.querySelectorAll('.preset-item').forEach((item, i) => {
-    item.classList.toggle('active', i === index);
-  });
-  showToast(`✨ ${p.name} preset loaded!`);
+  document.querySelectorAll('.preset-item').forEach((el,j)=>el.classList.toggle('active',j===i));
+  toast(`✨ ${p.name} preset loaded!`);
 }
 
 function saveCustomPreset() {
-  const preset = {
-    blur: document.getElementById('blurSlider').value,
-    opacity: document.getElementById('opacitySlider').value,
-    radius: document.getElementById('radiusSlider').value,
-    borderWidth: document.getElementById('borderWidthSlider').value,
-    shadow: document.getElementById('shadowSlider').value,
-    saturation: document.getElementById('saturationSlider').value,
-    colorMode: document.getElementById('colorMode').value,
-    solidColor: document.getElementById('solidColor').value,
-    gradientColor1: document.getElementById('gradientColor1').value,
-    gradientColor2: document.getElementById('gradientColor2').value
-  };
-  localStorage.setItem('glassPreset', JSON.stringify(preset));
-  showToast('✅ Preset saved!');
+  localStorage.setItem('glassPreset', JSON.stringify(getV()));
+  toast('✅ Preset saved!');
 }
 
 function loadCustomPreset() {
-  const preset = JSON.parse(localStorage.getItem('glassPreset'));
-  if (!preset) { showToast('❌ No saved preset found!'); return; }
-
-  document.getElementById('blurSlider').value        = preset.blur;
-  document.getElementById('opacitySlider').value     = preset.opacity;
-  document.getElementById('radiusSlider').value      = preset.radius;
-  document.getElementById('borderWidthSlider').value = preset.borderWidth;
-  document.getElementById('shadowSlider').value      = preset.shadow;
-  document.getElementById('saturationSlider').value  = preset.saturation;
-  document.getElementById('colorMode').value         = preset.colorMode;
-  document.getElementById('solidColor').value        = preset.solidColor;
-  document.getElementById('solidColorHex').value     = preset.solidColor;
-  document.getElementById('gradientColor1').value    = preset.gradientColor1;
-  document.getElementById('gradientHex1').value      = preset.gradientColor1;
-  document.getElementById('gradientColor2').value    = preset.gradientColor2;
-  document.getElementById('gradientHex2').value      = preset.gradientColor2;
-
+  const p=JSON.parse(localStorage.getItem('glassPreset'));
+  if(!p){toast('❌ No saved preset!');return;}
+  document.getElementById('blurSlider').value        = p.blur;
+  document.getElementById('opacitySlider').value     = p.opacity;
+  document.getElementById('radiusSlider').value      = p.radius;
+  document.getElementById('borderWidthSlider').value = p.borderWidth;
+  document.getElementById('shadowSlider').value      = p.shadow;
+  document.getElementById('saturationSlider').value  = p.saturation;
+  document.getElementById('colorMode').value         = p.colorMode;
+  document.getElementById('solidColor').value        = p.solidColor;
+  document.getElementById('solidColorHex').value     = p.solidColor;
+  document.getElementById('gradientColor1').value    = p.color1;
+  document.getElementById('gradientHex1').value      = p.color1;
+  document.getElementById('gradientColor2').value    = p.color2;
+  document.getElementById('gradientHex2').value      = p.color2;
   toggleColorMode();
-  updatePreview();
-  showToast('✅ Custom preset loaded!');
+  toast('✅ Preset loaded!');
 }
 
 function resetToDefault() {
-  document.getElementById('blurSlider').value        = 15;
-  document.getElementById('opacitySlider').value     = 0.2;
-  document.getElementById('radiusSlider').value      = 20;
-  document.getElementById('borderWidthSlider').value = 1;
-  document.getElementById('shadowSlider').value      = 0.3;
-  document.getElementById('saturationSlider').value  = 100;
-  document.getElementById('colorMode').value         = 'solid';
-  document.getElementById('solidColor').value        = '#ffffff';
-  document.getElementById('solidColorHex').value     = '#ffffff';
-  document.getElementById('shapeSelect').value       = 'card';
+  document.getElementById('blurSlider').value=15;
+  document.getElementById('opacitySlider').value=0.2;
+  document.getElementById('radiusSlider').value=20;
+  document.getElementById('borderWidthSlider').value=1;
+  document.getElementById('shadowSlider').value=0.3;
+  document.getElementById('saturationSlider').value=100;
+  document.getElementById('colorMode').value='solid';
+  document.getElementById('solidColor').value='#ffffff';
+  document.getElementById('solidColorHex').value='#ffffff';
+  document.getElementById('shapeSelect').value='card';
   toggleColorMode();
-  updatePreview();
-  document.querySelectorAll('.preset-item').forEach(i => i.classList.remove('active'));
-  showToast('🔄 Reset to default!');
+  document.querySelectorAll('.preset-item').forEach(el=>el.classList.remove('active'));
+  toast('🔄 Reset done!');
 }
 
 function randomize() {
-  const randomBlur        = Math.floor(Math.random() * 40) + 5;
-  const randomOpacity     = (Math.random() * 0.3 + 0.1).toFixed(2);
-  const randomRadius      = Math.floor(Math.random() * 80) + 10;
-  const randomBorderWidth = (Math.random() * 3 + 0.5).toFixed(1);
-  const randomShadow      = (Math.random() * 0.6 + 0.2).toFixed(2);
-  const randomSaturation  = Math.floor(Math.random() * 100) + 80;
-  const randomColor1      = '#' + Math.floor(Math.random()*16777215).toString(16).padStart(6,'0');
-  const randomColor2      = '#' + Math.floor(Math.random()*16777215).toString(16).padStart(6,'0');
-  const randomMode        = Math.random() > 0.5 ? 'gradient' : 'solid';
-
-  document.getElementById('blurSlider').value        = randomBlur;
-  document.getElementById('opacitySlider').value     = randomOpacity;
-  document.getElementById('radiusSlider').value      = randomRadius;
-  document.getElementById('borderWidthSlider').value = randomBorderWidth;
-  document.getElementById('shadowSlider').value      = randomShadow;
-  document.getElementById('saturationSlider').value  = randomSaturation;
-  document.getElementById('colorMode').value         = randomMode;
-
-  if (randomMode === 'solid') {
-    document.getElementById('solidColor').value    = randomColor1;
-    document.getElementById('solidColorHex').value = randomColor1;
+  const c1='#'+Math.floor(Math.random()*16777215).toString(16).padStart(6,'0');
+  const c2='#'+Math.floor(Math.random()*16777215).toString(16).padStart(6,'0');
+  const m=Math.random()>0.5?'gradient':'solid';
+  document.getElementById('blurSlider').value        = Math.floor(Math.random()*40)+5;
+  document.getElementById('opacitySlider').value     = +(Math.random()*0.3+0.1).toFixed(2);
+  document.getElementById('radiusSlider').value      = Math.floor(Math.random()*80)+5;
+  document.getElementById('borderWidthSlider').value = +(Math.random()*3+0.5).toFixed(1);
+  document.getElementById('shadowSlider').value      = +(Math.random()*0.6+0.2).toFixed(2);
+  document.getElementById('saturationSlider').value  = Math.floor(Math.random()*100)+80;
+  document.getElementById('colorMode').value=m;
+  if(m==='solid'){
+    document.getElementById('solidColor').value=c1;
+    document.getElementById('solidColorHex').value=c1;
   } else {
-    document.getElementById('gradientColor1').value = randomColor1;
-    document.getElementById('gradientHex1').value   = randomColor1;
-    document.getElementById('gradientColor2').value = randomColor2;
-    document.getElementById('gradientHex2').value   = randomColor2;
+    document.getElementById('gradientColor1').value=c1;document.getElementById('gradientHex1').value=c1;
+    document.getElementById('gradientColor2').value=c2;document.getElementById('gradientHex2').value=c2;
   }
-
   toggleColorMode();
-  updatePreview();
-  document.querySelectorAll('.preset-item').forEach(i => i.classList.remove('active'));
-  showToast('🎲 Random style generated!');
+  document.querySelectorAll('.preset-item').forEach(el=>el.classList.remove('active'));
+  toast('🎲 Random style!');
 }
 
 function downloadHTML() {
-  const blur        = document.getElementById('blurSlider').value;
-  const opacity     = document.getElementById('opacitySlider').value;
-  const radius      = document.getElementById('radiusSlider').value;
-  const borderWidth = document.getElementById('borderWidthSlider').value;
-  const shadow      = document.getElementById('shadowSlider').value;
-  const saturation  = document.getElementById('saturationSlider').value;
-  const colorMode   = document.getElementById('colorMode').value;
-
-  let background;
-  if (colorMode === 'solid') {
-    background = hexToRGBA(document.getElementById('solidColor').value, opacity);
-  } else {
-    const c1 = document.getElementById('gradientColor1').value;
-    const c2 = document.getElementById('gradientColor2').value;
-    background = `linear-gradient(135deg, ${hexToRGBA(c1, opacity)}, ${hexToRGBA(c2, opacity)})`;
-  }
-
-  const html = `<!DOCTYPE html>\n<html lang="en">\n<head>\n<meta charset="UTF-8">\n<title>Glassmorphism Effect</title>\n<style>\nbody {\n  min-height: 100vh;\n  display: flex;\n  align-items: center;\n  justify-content: center;\n  background: linear-gradient(135deg, #2e5cff 0%, #4169e1 100%);\n  font-family: Arial, sans-serif;\n}\n.glass {\n  backdrop-filter: blur(${blur}px) saturate(${saturation}%);\n  -webkit-backdrop-filter: blur(${blur}px) saturate(${saturation}%);\n  background: ${background};\n  border-radius: ${radius}px;\n  border: ${borderWidth}px solid rgba(255, 255, 255, 0.3);\n  box-shadow: 0 8px 32px rgba(0, 0, 0, ${shadow});\n  padding: 40px;\n  color: #ffffff;\n  max-width: 400px;\n}\n.glass h2 { margin: 0 0 15px; font-size: 2rem; }\n.glass p  { margin: 0; opacity: 0.9; }\n</style>\n</head>\n<body>\n  <div class="glass">\n    <h2>Glassmorphism Card</h2>\n    <p>Beautiful glassmorphism effect created with CSS backdrop-filter.</p>\n  </div>\n</body>\n</html>`;
-
-  const blob = new Blob([html], { type: 'text/html' });
-  const url  = URL.createObjectURL(blob);
-  const a    = document.createElement('a');
-  a.href     = url;
-  a.download = 'glassmorphism.html';
+  const v=getV(), bg=v.colorMode==='solid'?hexRGBA(v.solidColor,v.opacity):`linear-gradient(135deg,${hexRGBA(v.color1,v.opacity)},${hexRGBA(v.color2,v.opacity)})`;
+  const html=`<!DOCTYPE html>\n<html>\n<head><meta charset="UTF-8"><title>Glass Effect</title>\n<style>\nbody{min-height:100vh;display:flex;align-items:center;justify-content:center;background:linear-gradient(135deg,#1e1b4b,#312e81,#4c1d95);font-family:Arial,sans-serif;}\n.glass{backdrop-filter:blur(${v.blur}px) saturate(${v.saturation}%);-webkit-backdrop-filter:blur(${v.blur}px) saturate(${v.saturation}%);background:${bg};border-radius:${v.radius}px;border:${v.borderWidth}px solid rgba(255,255,255,0.35);box-shadow:0 8px 32px rgba(0,0,0,${v.shadow});padding:40px;color:#fff;max-width:400px;}\n.glass h2{margin:0 0 15px;font-size:2rem;}\n.glass p{margin:0;opacity:0.9;}\n</style></head>\n<body><div class="glass"><h2>Glassmorphism Card</h2><p>Beautiful glass effect.</p></div></body></html>`;
+  const a=Object.assign(document.createElement('a'),{href:URL.createObjectURL(new Blob([html],{type:'text/html'})),download:'glassmorphism.html'});
   a.click();
-  URL.revokeObjectURL(url);
-  showToast('📥 HTML downloaded!');
+  toast('📥 HTML downloaded!');
 }
 
-function showToast(message) {
-  const toast = document.getElementById('toast');
-  toast.textContent = message;
-  toast.style.display = 'block';
-  setTimeout(() => { toast.style.display = 'none'; }, 3000);
+function toast(msg) {
+  const el=document.getElementById('toast');
+  el.textContent=msg; el.style.display='block';
+  setTimeout(()=>el.style.display='none',3000);
 }
 
-// Keyboard shortcuts
-document.addEventListener('keydown', function(e) {
-  if ((e.ctrlKey || e.metaKey) && e.key === 'c' && !e.shiftKey) {
-    if (document.activeElement.tagName !== 'INPUT') { e.preventDefault(); copyCode('css'); }
-  }
-  if ((e.ctrlKey || e.metaKey) && e.key === 's') { e.preventDefault(); saveCustomPreset(); }
-  if ((e.ctrlKey || e.metaKey) && e.key === 'r') { e.preventDefault(); resetToDefault(); }
-  if ((e.ctrlKey || e.metaKey) && e.key === 'd') { e.preventDefault(); downloadHTML(); }
-  if (e.key === ' ' && document.activeElement.tagName !== 'INPUT') { e.preventDefault(); randomize(); }
+document.addEventListener('keydown',e=>{
+  const t=document.activeElement.tagName;
+  if((e.ctrlKey||e.metaKey)&&e.key==='c'&&t!=='INPUT'){e.preventDefault();copyCode();}
+  if((e.ctrlKey||e.metaKey)&&e.key==='s'){e.preventDefault();saveCustomPreset();}
+  if((e.ctrlKey||e.metaKey)&&e.key==='r'){e.preventDefault();resetToDefault();}
+  if((e.ctrlKey||e.metaKey)&&e.key==='d'){e.preventDefault();downloadHTML();}
+  if(e.key===' '&&t!=='INPUT'){e.preventDefault();randomize();}
 });
 </script>
-
 </body>
 </html>
